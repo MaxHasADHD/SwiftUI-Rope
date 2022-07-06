@@ -57,5 +57,9 @@ struct Rope {
     }
     
     // Control (grey dot)
-    
+    var control: CGPoint {
+        var control = ropeCenter
+        control.y += slack
+        return control
+    }
 }

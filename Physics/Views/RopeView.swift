@@ -10,21 +10,12 @@ import SwiftUI
 // Rope is done using a `interpolatingSpring` and animated data with a group of points
 
 struct RopeShape: Shape {
-    var anchor1: CGPoint
-    var anchor2: CGPoint
-    
-    var animatableData: AnimatablePair<CGFloat, CGFloat> {
-        get { AnimatablePair(anchor2.x, anchor2.y) }
-        set {
-            anchor2 = CGPoint(x: newValue.first, y: newValue.second)
-        }
-    }
+    let rope: Rope
     
     func path(in rect: CGRect) -> Path {
         Path { path in
-            path.move(to: anchor1)
-            path.addLine(to: anchor2)
-//            path.addQuadCurve(to: anchor2, control: CGPoint(x: 0, y: 0))
+            path.move(to: rope.a1)
+            path.addQuadCurve(to: rope.a2, control: rope.control)
         }
     }
 }
@@ -46,14 +37,23 @@ struct RopeView: View, Animatable {
     
     var body: some View {
         Canvas { context, size in
-            let path = RopeShape(anchor1: anchor1, anchor2: anchor2).path(in: .zero)
+            let rope = Rope(length: 400, a1: anchor1, a2: anchor2)
+            let path = RopeShape(rope: rope).path(in: .zero)
 
+            // Visual
             context.stroke(path,
                            with: .color(.white),
                            style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
             context.stroke(path,
                            with: .palette([.color(.red), .color(.white), .color(.red), .color(.white)]),
                            style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now) * -50))
+            // Debug info
+//            context.drawLayer { ctx in
+//                var rect = CGRect(x: rope.ropeCenter.x - 10, y: rope.ropeCenter.y - 10, width: 20, height: 20)
+//                ctx.fill(Circle().path(in: rect), with: .color(.green))
+//                rect.origin.y += rope.slack
+//                ctx.fill(Circle().path(in: rect), with: .color(.red))
+//            }
             
         }
         .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 10)
