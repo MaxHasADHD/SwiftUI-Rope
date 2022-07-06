@@ -7,50 +7,56 @@
 
 import SwiftUI
 
-private struct Rope: Shape {
-    let anchor1: CGPoint
-    let anchor2: CGPoint
+// Rope is done using a `interpolatingSpring` and animated data with a group of points
+
+struct RopeShape: Shape {
+    var anchor1: CGPoint
+    var anchor2: CGPoint
+    
+    var animatableData: AnimatablePair<CGFloat, CGFloat> {
+        get { AnimatablePair(anchor2.x, anchor2.y) }
+        set {
+            anchor2 = CGPoint(x: newValue.first, y: newValue.second)
+        }
+    }
     
     func path(in rect: CGRect) -> Path {
         Path { path in
             path.move(to: anchor1)
-//            path.addLines([anchor1, anchor2])
             path.addLine(to: anchor2)
+//            path.addQuadCurve(to: anchor2, control: CGPoint(x: 0, y: 0))
         }
     }
 }
 
 let now = Date.now
 
-struct RopeView: View {
+struct RopeView: View, Animatable {
     
     let anchor1: CGPoint
-    let anchor2: CGPoint
-    var nodePositions: [CGPoint]
+    var anchor2: CGPoint
     let date: Date
+    
+    var animatableData: AnimatablePair<CGFloat, CGFloat> {
+        get { AnimatablePair(anchor2.x, anchor2.y) }
+        set {
+            anchor2 = CGPoint(x: newValue.first, y: newValue.second)
+        }
+    }
     
     var body: some View {
         Canvas { context, size in
-//            let nodes = generateNodes()
-//            update(nodes: nodes)
-            
-            let path = Path { path in
-                path.move(to: anchor1)
-                for node in nodePositions {
-//                    path.addLine(to: node.position)
-                    path.addLine(to: node)
-                }
-//                path.move(to: anchor2)
-            }
+            let path = RopeShape(anchor1: anchor1, anchor2: anchor2).path(in: .zero)
+
             context.stroke(path,
                            with: .color(.white),
                            style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
             context.stroke(path,
                            with: .palette([.color(.red), .color(.white), .color(.red), .color(.white)]),
-                           style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now)*50))
+                           style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now) * -50))
+            
         }
         .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 10)
-        .animation(.linear(duration: 1).speed(50), value: date)
         .allowsHitTesting(false)
     }
     
@@ -107,6 +113,6 @@ struct RopeView: View {
 
 struct RopeView_Previews: PreviewProvider {
     static var previews: some View {
-        RopeView(anchor1: CGPoint(x: 0, y: 0), anchor2: CGPoint(x: 50, y: 100), nodePositions: [], date: .now)
+        RopeView(anchor1: CGPoint(x: 0, y: 0), anchor2: CGPoint(x: 50, y: 100), date: .now)
     }
 }

@@ -13,15 +13,6 @@ struct ContentView: View {
     @StateObject var plugOne = Plug(position: CGPoint(x: 50, y: 50))
     
     @StateObject var plugTwo = Plug(position: CGPoint(x: 100, y: 100))
-
-    @State var scene: GameScene = {
-        let scene = GameScene()
-        scene.anchor1 = CGPoint(x: 50, y: 50)
-        scene.anchor2 = CGPoint(x: 100, y: 100)
-        scene.size = CGSize(width: 500, height: 500)
-        scene.scaleMode = .fill
-        return scene
-    }()
     
     var body: some View {
         let dragPlugOne = DragGesture()
@@ -41,7 +32,6 @@ struct ContentView: View {
             }
         
         ZStack {
-            SpriteView(scene: self.scene)
             
             PlugView()
                 .frame(width: 25, height: 25)
@@ -55,18 +45,12 @@ struct ContentView: View {
                 .gesture(
                     dragPlugTwo
                 )
-            
-//            TimelineView(.animation(minimumInterval: 0.01, paused: false)) { context in
-//                RopeView(anchor1: plugOne.position, anchor2: plugTwo.position, nodePositions: scene.nodePositions, date: context.date)
-//            }
+
+            TimelineView(.animation(minimumInterval: 0.01, paused: false)) { context in
+                RopeView(anchor1: plugOne.position, anchor2: plugTwo.position, date: context.date)
+            }
         }
         .frame(width: 500, height: 500)
-        .onChange(of: plugOne.position) { newValue in
-            scene.anchor1 = plugOne.position
-        }
-        .onChange(of: plugTwo.position) { newValue in
-            scene.anchor2 = plugTwo.position
-        }
     }
 }
 

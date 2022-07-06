@@ -14,6 +14,12 @@ func distance(_ a: CGPoint, _ b: CGPoint) -> CGFloat {
     return CGFloat(sqrt(xDist * xDist + YDist * YDist))
 }
 
+func midpoint(_ a: CGPoint, _ b: CGPoint) -> CGPoint {
+    let x = (a.x + b.x) / 2
+    let y = (a.y + b.y) / 2
+    return CGPoint(x: x, y: y)
+}
+
 func +=(_ lhs: inout CGPoint, _ rhs: CGPoint) {
     lhs.x += rhs.x
     lhs.y += rhs.y
@@ -51,4 +57,3 @@ extension CGPoint {
     }
     
 }
-
