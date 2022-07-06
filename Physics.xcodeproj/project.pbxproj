@@ -14,11 +14,10 @@
 		F5C33B772874E6A400644115 /* PlugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B762874E6A400644115 /* PlugView.swift */; };
 		F5C33B7B2874E81D00644115 /* Plug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B7A2874E81D00644115 /* Plug.swift */; };
 		F5C33B7D2874F15600644115 /* RopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B7C2874F15600644115 /* RopeView.swift */; };
-		F5C33B812875151F00644115 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B802875151F00644115 /* Node.swift */; };
-		F5C33B832875152900644115 /* Stick.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B822875152900644115 /* Stick.swift */; };
 		F5C33B852875157E00644115 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B842875157E00644115 /* Helper.swift */; };
 		F5C33B942875A50C00644115 /* AnimatableVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B932875A50C00644115 /* AnimatableVector.swift */; };
 		F5C33B962875A76000644115 /* Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B952875A76000644115 /* Spring.swift */; };
+		F5C33B982875E7B500644115 /* RopeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B972875E7B500644115 /* RopeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +30,10 @@
 		F5C33B762874E6A400644115 /* PlugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugView.swift; sourceTree = "<group>"; };
 		F5C33B7A2874E81D00644115 /* Plug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plug.swift; sourceTree = "<group>"; };
 		F5C33B7C2874F15600644115 /* RopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeView.swift; sourceTree = "<group>"; };
-		F5C33B802875151F00644115 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		F5C33B822875152900644115 /* Stick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stick.swift; sourceTree = "<group>"; };
 		F5C33B842875157E00644115 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		F5C33B932875A50C00644115 /* AnimatableVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableVector.swift; sourceTree = "<group>"; };
 		F5C33B952875A76000644115 /* Spring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spring.swift; sourceTree = "<group>"; };
+		F5C33B972875E7B500644115 /* RopeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C33B7A2874E81D00644115 /* Plug.swift */,
-				F5C33B802875151F00644115 /* Node.swift */,
-				F5C33B822875152900644115 /* Stick.swift */,
+				F5C33B972875E7B500644115 /* RopeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,12 +180,11 @@
 				F5C33B6A2874E61A00644115 /* ContentView.swift in Sources */,
 				F5C33B7B2874E81D00644115 /* Plug.swift in Sources */,
 				F5C33B772874E6A400644115 /* PlugView.swift in Sources */,
-				F5C33B832875152900644115 /* Stick.swift in Sources */,
 				F5C33B852875157E00644115 /* Helper.swift in Sources */,
 				F5C33B962875A76000644115 /* Spring.swift in Sources */,
+				F5C33B982875E7B500644115 /* RopeModel.swift in Sources */,
 				F5C33B682874E61A00644115 /* PhysicsApp.swift in Sources */,
 				F5C33B942875A50C00644115 /* AnimatableVector.swift in Sources */,
-				F5C33B812875151F00644115 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

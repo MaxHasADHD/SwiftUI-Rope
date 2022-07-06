@@ -10,12 +10,13 @@ import SwiftUI
 // Rope is done using a `interpolatingSpring` and animated data with a group of points
 
 struct RopeShape: Shape {
-    let rope: Rope
+    let ropeModel: RopeModel
     
     func path(in rect: CGRect) -> Path {
         Path { path in
+            let rope = ropeModel.rope
             path.move(to: rope.a1)
-            path.addQuadCurve(to: rope.a2, control: rope.control)
+            path.addQuadCurve(to: rope.a2, control: ropeModel.control)
         }
     }
 }
@@ -24,95 +25,44 @@ let now = Date.now
 
 struct RopeView: View, Animatable {
     
-    let anchor1: CGPoint
-    var anchor2: CGPoint
-    let date: Date
-    
-    var animatableData: AnimatablePair<CGFloat, CGFloat> {
-        get { AnimatablePair(anchor2.x, anchor2.y) }
-        set {
-            anchor2 = CGPoint(x: newValue.first, y: newValue.second)
-        }
-    }
+    @ObservedObject var ropeModel: RopeModel
     
     var body: some View {
         Canvas { context, size in
-            let rope = Rope(length: 400, a1: anchor1, a2: anchor2)
-            let path = RopeShape(rope: rope).path(in: .zero)
+            let path = RopeShape(ropeModel: ropeModel).path(in: .zero)
 
             // Visual
             context.stroke(path,
                            with: .color(.white),
                            style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-            context.stroke(path,
-                           with: .palette([.color(.red), .color(.white), .color(.red), .color(.white)]),
-                           style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now) * -50))
+//            context.stroke(path,
+//                           with: .palette([.color(.red), .color(.white), .color(.red), .color(.white)]),
+//                           style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now) * -50))
             // Debug info
-//            context.drawLayer { ctx in
-//                var rect = CGRect(x: rope.ropeCenter.x - 10, y: rope.ropeCenter.y - 10, width: 20, height: 20)
-//                ctx.fill(Circle().path(in: rect), with: .color(.green))
-//                rect.origin.y += rope.slack
-//                ctx.fill(Circle().path(in: rect), with: .color(.red))
-//            }
+            let rope = ropeModel.rope
+            context.drawLayer { ctx in
+                let debugSize = CGSize(width: 20, height: 20)
+                // Center
+                var rect = CGRect(origin: rope.ropeCenter - 10, size: debugSize)
+                ctx.fill(Circle().path(in: rect), with: .color(.green))
+                
+                // Control
+                rect = CGRect(origin: rope.control - 10, size: debugSize)
+                ctx.fill(Circle().path(in: rect), with: .color(.red))
+                
+                // Velocity applied
+                rect = CGRect(origin: ropeModel.control - 10, size: debugSize)
+                ctx.fill(Circle().path(in: rect), with: .color(.purple))
+            }
             
         }
         .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 10)
         .allowsHitTesting(false)
     }
-    
-    func generateNodes() -> [Node] {
-        let totalNodes = 50
-        var currentPoint = anchor1
-        
-        let xDist = anchor2.x - anchor1.x
-        let xStep = xDist / CGFloat(totalNodes)
-        
-        let yDist = anchor2.y - anchor1.y
-        let yStep = yDist / CGFloat(totalNodes)
-
-        let step = CGPoint(x: xStep, y: yStep)
-        
-        var nodes: [Node] = (0..<totalNodes).map { i in
-            currentPoint += step
-            return Node(position: currentPoint, locked: false)
-        }
-        nodes.insert(Node(position: anchor1, locked: true), at: 0)
-        nodes.append(Node(position: anchor2, locked: true))
-        return nodes
-    }
-    
-    func update(nodes: [Node]) {
-        
-        for node in nodes {
-            guard !node.locked else {
-                continue
-            }
-            let prevPos = node.position
-            node.position += node.position - node.previousPosition
-            node.position += CGPoint(x: 0, y: 0.196)
-            node.previousPosition = prevPos
-        }
-        
-//        for stick in sticks {
-//            let stickCenter = stick.center
-//            let stickDirection = stick.direction
-//
-//            if !stick.nodeA.locked {
-//                stick.nodeA.position = stickCenter + stickDirection * stick.length / 2
-//                stick.nodeA.position = CGPoint(x: stick.nodeA.position.x.clamped(to: 5...1195), y: stick.nodeA.position.y.clamped(to: 5...895))
-//            }
-//
-//            if !stick.nodeB.locked {
-//                stick.nodeB.position = stickCenter - stickDirection * stick.length / 2
-//
-//                stick.nodeB.position = CGPoint(x: stick.nodeB.position.x.clamped(to: 5...1195), y: stick.nodeB.position.y.clamped(to: 5...895))
-//            }
-//        }
-    }
 }
 
-struct RopeView_Previews: PreviewProvider {
-    static var previews: some View {
-        RopeView(anchor1: CGPoint(x: 0, y: 0), anchor2: CGPoint(x: 50, y: 100), date: .now)
-    }
-}
+//struct RopeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RopeView(anchor1: CGPoint(x: 0, y: 0), anchor2: CGPoint(x: 50, y: 100), date: .now, velocity: .zero)
+//    }
+//}
