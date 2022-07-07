@@ -30,10 +30,10 @@ class RopeModel: ObservableObject {
         rope = Rope(length: ropeLength, a1: a1, a2: a2)
         ropes.append(rope)
         ropes = Array(ropes[..<2])
+        control = spring.calculatePosition(position: control, anchor: rope.control, timeInterval: 0.2)
     }
     
-    // new control = old control + velocity * time interval
-    func applyVelocity(_ v: CGVector, interval: TimeInterval) {
-        control = rope.control + spring.calculatePosition(position: rope.control, velocity: v, timeInterval: interval)
+    func updateControl(interval: TimeInterval) {
+        control = spring.calculatePosition(position: control, anchor: rope.control, timeInterval: 0.2)
     }
 }

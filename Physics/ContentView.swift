@@ -14,61 +14,23 @@ struct ContentView: View {
     
     @StateObject var plugTwo = Plug(position: CGPoint(x: 100, y: 100))
     
-    @State private var previousDragValue: DragGesture.Value?
-    @State private var velocity: CGVector?
-    
     @State private var ropeModel = RopeModel(a1: CGPoint(x: 50, y: 50), a2: CGPoint(x: 100, y: 100))
-    @State private var lastDragged: Date?
-    
-    /// https://stackoverflow.com/questions/57222885/calculate-velocity-of-draggesture
-    func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> CGVector? {
-        let timeInterval = currentValue.time.timeIntervalSince(previousValue.time)
-        
-        let diffXInTimeInterval = Double(currentValue.translation.width - previousValue.translation.width)
-        let diffYInTimeInterval = Double(currentValue.translation.height - previousValue.translation.height)
-        
-        let velocityX = diffXInTimeInterval / timeInterval
-        let velocityY = diffYInTimeInterval / timeInterval
-        
-        let v = CGVector(dx: velocityX, dy: velocityY)
-        ropeModel.applyVelocity(v, interval: timeInterval)
-        return v
-    }
     
     var body: some View {
         let dragPlugOne = DragGesture()
             .onChanged { value in
                 plugOne.move(by: value.translation)
-                
-                if let previousValue = previousDragValue {
-                    // calc velocity using currentValue and previousValue
-                    velocity = calcDragVelocity(previousValue: previousValue, currentValue: value)
-                }
-                // save previous value
-                previousDragValue = value
             }
             .onEnded { value in
                 plugOne.endMoving()
-                lastDragged = .now
-                previousDragValue = nil
             }
         
         let dragPlugTwo = DragGesture()
             .onChanged { value in
-                if let previousValue = previousDragValue {
-                    // calc velocity using currentValue and previousValue
-                    velocity = calcDragVelocity(previousValue: previousValue, currentValue: value)
-                    print("Velocity: ", velocity)
-                }
-                // save previous value
-                previousDragValue = value
-                
                 plugTwo.move(by: value.translation)
             }
             .onEnded { value in
                 plugTwo.endMoving()
-                lastDragged = .now
-                previousDragValue = nil
             }
         
         ZStack {
@@ -94,11 +56,9 @@ struct ContentView: View {
 
             // The spring is constantly changing, not just in the moment. TimelineView has a Date interval, I need to use that to calculate the new control
             TimelineView(.animation(minimumInterval: 0.01, paused: false)) { context in
-                RopeView(ropeModel: ropeModel)
+                RopeView(ropeModel: ropeModel, date: context.date)
                     .onChange(of: context.date) { (newValue: Date) in
-                        if let v = velocity, let p = lastDragged {
-                            ropeModel.applyVelocity(v, interval: newValue.timeIntervalSince(p))
-                        }
+                        ropeModel.updateControl(interval: 0.01)
                     }
             }
         }

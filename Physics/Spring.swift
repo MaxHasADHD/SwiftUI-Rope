@@ -16,39 +16,52 @@ import SwiftUI
 // damping Force = negative damping * velocity
 
 // Would the velocity be on the control in the first place? Not the control points?
-struct Spring {
+class Spring {
     
     /* Spring Length, set to 1 for simplicity */
-    let length: CGFloat = 1
+    let length: CGFloat = 10
+    let gravity: CGFloat = 9.8
+    
+    private var velocity = CGVector.zero
 
-    ///
+    /// Purple dot.
     /// - Parameters:
-    ///   - position: Position from control
-    ///   - stiffness: ?
-    ///   - mass: ?
+    ///   - position: Position from control (red dot)
+    ///   - velocity: V
+    ///   - stiffness: K
+    ///   - mass: M
+    ///   - damping: D
     /// - Returns: New position from control
-    func calculatePosition(position: CGPoint, velocity: CGVector, timeInterval: TimeInterval, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 10) -> CGPoint {
-        /* Object position and velocity. */
-        var x: CGPoint = position
-//        var v: CGVector = velocity
-        
+    func calculatePosition(position: CGPoint, anchor: CGPoint, timeInterval: TimeInterval = 0.2, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 2) -> CGPoint {
         /* Spring stiffness, in kg / s^2 */
         let k: CGFloat = -stiffness
         
         /* Damping constant, in kg / s */
-        let d = CGPoint(x: -damping * velocity.dx, y: -damping * velocity.dy)
+        let dx = damping * velocity.dx
+        let dy = damping * velocity.dy
         
-        let xSpringForce = k * (x.x - length)
-        let ySpringForce = k * (x.y - length)
+        // Spring force
+        let xSpringForce = k * (position.x - anchor.x)
+        let ySpringForce = k * (position.y - anchor.y)
         
-        let ax = (xSpringForce + d.x) / mass
-        let ay = (ySpringForce + d.y) / mass
-        // TODO: Pass new vector out as well?
-//        v += a * timeInterval
-        x = CGPoint(x: ax, y: ay)
-        x += velocity
-        x *= timeInterval
-        return x
+        // Force
+        let forceX = xSpringForce - dx
+        let forceY = ySpringForce + mass * gravity - dy
+        
+        // Accelleration
+        let ax = forceX / mass
+        let ay = forceY / mass
+        
+        // New velocity
+        let vx = velocity.dx + ax * timeInterval
+        let vy = velocity.dy + ay * timeInterval
+        velocity = CGVector(dx: vx, dy: vy)
+        
+        // New position
+        let positionX = position.x + vx * timeInterval
+        let positionY = position.y + vy * timeInterval
+        
+        return CGPoint(x: positionX, y: positionY)
     }
 }
 
