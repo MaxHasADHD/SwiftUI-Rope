@@ -18,6 +18,7 @@ struct ContentView: View {
     @State private var velocity: CGVector?
     
     @State private var ropeModel = RopeModel(a1: CGPoint(x: 50, y: 50), a2: CGPoint(x: 100, y: 100))
+    @State private var lastDragged: Date?
     
     /// https://stackoverflow.com/questions/57222885/calculate-velocity-of-draggesture
     func calcDragVelocity(previousValue: DragGesture.Value, currentValue: DragGesture.Value) -> CGVector? {
@@ -48,6 +49,7 @@ struct ContentView: View {
             }
             .onEnded { value in
                 plugOne.endMoving()
+                lastDragged = .now
                 previousDragValue = nil
             }
         
@@ -65,6 +67,7 @@ struct ContentView: View {
             }
             .onEnded { value in
                 plugTwo.endMoving()
+                lastDragged = .now
                 previousDragValue = nil
             }
         
@@ -89,8 +92,14 @@ struct ContentView: View {
                     ropeModel.updateAnchors(a1: plugOne.position, a2: newValue)
                 }
 
+            // The spring is constantly changing, not just in the moment. TimelineView has a Date interval, I need to use that to calculate the new control
             TimelineView(.animation(minimumInterval: 0.01, paused: false)) { context in
                 RopeView(ropeModel: ropeModel)
+                    .onChange(of: context.date) { (newValue: Date) in
+                        if let v = velocity, let p = lastDragged {
+                            ropeModel.applyVelocity(v, interval: newValue.timeIntervalSince(p))
+                        }
+                    }
             }
         }
         .frame(width: 500, height: 500)

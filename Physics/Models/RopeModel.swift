@@ -10,12 +10,9 @@ import SwiftUI
 
 class RopeModel: ObservableObject {
     
-    var rope: Rope {
-        didSet {
-            objectWillChange.send()
-        }
-    }
+    var rope: Rope
     private let ropeLength: CGFloat
+    private let spring = Spring()
     
     private var ropes: [Rope]
     
@@ -37,9 +34,6 @@ class RopeModel: ObservableObject {
     
     // new control = old control + velocity * time interval
     func applyVelocity(_ v: CGVector, interval: TimeInterval) {
-        var p = ropes.last?.control ?? rope.control
-        p += v
-        p *= interval
-        control = p
+        control = rope.control + spring.calculatePosition(position: rope.control, velocity: v, timeInterval: interval)
     }
 }

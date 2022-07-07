@@ -13,37 +13,43 @@ import SwiftUI
 // acceleration = negative stiffness * displacement / mass
 // velocity = old velocity + acceleration * time interval
 // position = old position + velocity * time interval
+// damping Force = negative damping * velocity
 
-struct Spring: Animatable {
-    
-    var animatableData: CGFloat {
-        get { position }
-        set {
-            /* Object position and velocity. */
-            var x: CGFloat = newValue
-            var v: CGFloat = 0
-            
-            /* Spring stiffness, in kg / s^2 */
-            let k: CGFloat = -stiffness;
-            
-            let fSpring = k * (x - length)
-            let a = fSpring / mass
-            v += a * frameRate
-            x += v * frameRate
-            position = x
-        }
-    }
+// Would the velocity be on the control in the first place? Not the control points?
+struct Spring {
     
     /* Spring Length, set to 1 for simplicity */
     let length: CGFloat = 1
-    let mass: CGFloat = 1
-    let stiffness: CGFloat = 20
-    /* Framerate: we want 60 fps hence the framerate here is at 1/60 */
-    let frameRate: CGFloat = 1 / 60
-    // Position from control?
-    private(set) var position: CGFloat = 0
-    
-    
+
+    ///
+    /// - Parameters:
+    ///   - position: Position from control
+    ///   - stiffness: ?
+    ///   - mass: ?
+    /// - Returns: New position from control
+    func calculatePosition(position: CGPoint, velocity: CGVector, timeInterval: TimeInterval, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 10) -> CGPoint {
+        /* Object position and velocity. */
+        var x: CGPoint = position
+//        var v: CGVector = velocity
+        
+        /* Spring stiffness, in kg / s^2 */
+        let k: CGFloat = -stiffness
+        
+        /* Damping constant, in kg / s */
+        let d = CGPoint(x: -damping * velocity.dx, y: -damping * velocity.dy)
+        
+        let xSpringForce = k * (x.x - length)
+        let ySpringForce = k * (x.y - length)
+        
+        let ax = (xSpringForce + d.x) / mass
+        let ay = (ySpringForce + d.y) / mass
+        // TODO: Pass new vector out as well?
+//        v += a * timeInterval
+        x = CGPoint(x: ax, y: ay)
+        x += velocity
+        x *= timeInterval
+        return x
+    }
 }
 
 // Based on https://twitter.com/t3ssel8r/status/1470039981502922752
