@@ -40,7 +40,6 @@ struct RopeView: View, Animatable {
                            with: .palette([.color(.red), .color(.white), .color(.red), .color(.white)]),
                            style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round, dash: [8, 14], dashPhase: date.timeIntervalSince(now) * -50))
             // Debug info
-            /*
             let rope = ropeModel.rope
             context.drawLayer { ctx in
                 let debugSize = CGSize(width: 20, height: 20)
@@ -56,16 +55,9 @@ struct RopeView: View, Animatable {
                 rect = CGRect(origin: ropeModel.control - 10, size: debugSize)
                 ctx.fill(Circle().path(in: rect), with: .color(.purple))
             }
-            */
             
         }
         .shadow(color: .black.opacity(0.1), radius: 1, x: 0, y: 10)
         .allowsHitTesting(false)
     }
 }
-
-//struct RopeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RopeView(anchor1: CGPoint(x: 0, y: 0), anchor2: CGPoint(x: 50, y: 100), date: .now, velocity: .zero)
-//    }
-//}

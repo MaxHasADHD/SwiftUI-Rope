@@ -15,7 +15,6 @@
 		F5C33B7B2874E81D00644115 /* Plug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B7A2874E81D00644115 /* Plug.swift */; };
 		F5C33B7D2874F15600644115 /* RopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B7C2874F15600644115 /* RopeView.swift */; };
 		F5C33B852875157E00644115 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B842875157E00644115 /* Helper.swift */; };
-		F5C33B942875A50C00644115 /* AnimatableVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B932875A50C00644115 /* AnimatableVector.swift */; };
 		F5C33B962875A76000644115 /* Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B952875A76000644115 /* Spring.swift */; };
 		F5C33B982875E7B500644115 /* RopeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B972875E7B500644115 /* RopeModel.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +30,6 @@
 		F5C33B7A2874E81D00644115 /* Plug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plug.swift; sourceTree = "<group>"; };
 		F5C33B7C2874F15600644115 /* RopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeView.swift; sourceTree = "<group>"; };
 		F5C33B842875157E00644115 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		F5C33B932875A50C00644115 /* AnimatableVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableVector.swift; sourceTree = "<group>"; };
 		F5C33B952875A76000644115 /* Spring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spring.swift; sourceTree = "<group>"; };
 		F5C33B972875E7B500644115 /* RopeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,8 +67,6 @@
 				F5C33B672874E61A00644115 /* PhysicsApp.swift */,
 				F5C33B692874E61A00644115 /* ContentView.swift */,
 				F5C33B842875157E00644115 /* Helper.swift */,
-				F5C33B932875A50C00644115 /* AnimatableVector.swift */,
-				F5C33B952875A76000644115 /* Spring.swift */,
 				F5C33B782874E7FF00644115 /* Models */,
 				F5C33B792874E80700644115 /* Views */,
 				F5C33B6B2874E61C00644115 /* Assets.xcassets */,
@@ -93,6 +89,7 @@
 			children = (
 				F5C33B7A2874E81D00644115 /* Plug.swift */,
 				F5C33B972875E7B500644115 /* RopeModel.swift */,
+				F5C33B952875A76000644115 /* Spring.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,7 +181,6 @@
 				F5C33B962875A76000644115 /* Spring.swift in Sources */,
 				F5C33B982875E7B500644115 /* RopeModel.swift in Sources */,
 				F5C33B682874E61A00644115 /* PhysicsApp.swift in Sources */,
-				F5C33B942875A50C00644115 /* AnimatableVector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

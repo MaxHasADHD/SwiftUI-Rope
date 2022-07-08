@@ -15,24 +15,20 @@ import SwiftUI
 // position = old position + velocity * time interval
 // damping Force = negative damping * velocity
 
-// Would the velocity be on the control in the first place? Not the control points?
 class Spring {
-    
-    /* Spring Length, set to 1 for simplicity */
-    let length: CGFloat = 10
+
     let gravity: CGFloat = 9.8
     
     private var velocity = CGVector.zero
 
-    /// Purple dot.
+    /// Calculates a point for a given time to simulate a spring
     /// - Parameters:
     ///   - position: Position from control (red dot)
-    ///   - velocity: V
     ///   - stiffness: K
     ///   - mass: M
     ///   - damping: D
-    /// - Returns: New position from control
-    func calculatePosition(position: CGPoint, anchor: CGPoint, timeInterval: TimeInterval = 0.2, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 2) -> CGPoint {
+    /// - Returns: The end point of the spring for a given time.
+    func calculatePosition(position: CGPoint, anchor: CGPoint, timeInterval: TimeInterval = 0.2, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 3) -> CGPoint {
         /* Spring stiffness, in kg / s^2 */
         let k: CGFloat = -stiffness
         
