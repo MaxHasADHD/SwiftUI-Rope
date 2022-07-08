@@ -1,6 +1,6 @@
 //
 //  Spring.swift
-//  Physics
+// SwiftUI-Rope
 //
 //  Created by Maximilian Litteral on 7/6/22.
 //

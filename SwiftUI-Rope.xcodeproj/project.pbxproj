@@ -20,12 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F5C33B642874E61A00644115 /* Physics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Physics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5C33B642874E61A00644115 /* SwiftUI-Rope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Rope.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5C33B672874E61A00644115 /* PhysicsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsApp.swift; sourceTree = "<group>"; };
 		F5C33B692874E61A00644115 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F5C33B6B2874E61C00644115 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5C33B6E2874E61C00644115 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F5C33B702874E61C00644115 /* Physics.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Physics.entitlements; sourceTree = "<group>"; };
+		F5C33B702874E61C00644115 /* SwiftUI-Rope.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SwiftUI-Rope.entitlements"; sourceTree = "<group>"; };
 		F5C33B762874E6A400644115 /* PlugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugView.swift; sourceTree = "<group>"; };
 		F5C33B7A2874E81D00644115 /* Plug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plug.swift; sourceTree = "<group>"; };
 		F5C33B7C2874F15600644115 /* RopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeView.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		F5C33B5B2874E61A00644115 = {
 			isa = PBXGroup;
 			children = (
-				F5C33B662874E61A00644115 /* Physics */,
+				F5C33B662874E61A00644115 /* SwiftUI-Rope */,
 				F5C33B652874E61A00644115 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +56,12 @@
 		F5C33B652874E61A00644115 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5C33B642874E61A00644115 /* Physics.app */,
+				F5C33B642874E61A00644115 /* SwiftUI-Rope.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F5C33B662874E61A00644115 /* Physics */ = {
+		F5C33B662874E61A00644115 /* SwiftUI-Rope */ = {
 			isa = PBXGroup;
 			children = (
 				F5C33B672874E61A00644115 /* PhysicsApp.swift */,
@@ -70,10 +70,10 @@
 				F5C33B782874E7FF00644115 /* Models */,
 				F5C33B792874E80700644115 /* Views */,
 				F5C33B6B2874E61C00644115 /* Assets.xcassets */,
-				F5C33B702874E61C00644115 /* Physics.entitlements */,
+				F5C33B702874E61C00644115 /* SwiftUI-Rope.entitlements */,
 				F5C33B6D2874E61C00644115 /* Preview Content */,
 			);
-			path = Physics;
+			path = "SwiftUI-Rope";
 			sourceTree = "<group>";
 		};
 		F5C33B6D2874E61C00644115 /* Preview Content */ = {
@@ -106,9 +106,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F5C33B632874E61A00644115 /* Physics */ = {
+		F5C33B632874E61A00644115 /* SwiftUI-Rope */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F5C33B732874E61C00644115 /* Build configuration list for PBXNativeTarget "Physics" */;
+			buildConfigurationList = F5C33B732874E61C00644115 /* Build configuration list for PBXNativeTarget "SwiftUI-Rope" */;
 			buildPhases = (
 				F5C33B602874E61A00644115 /* Sources */,
 				F5C33B612874E61A00644115 /* Frameworks */,
@@ -118,9 +118,9 @@
 			);
 			dependencies = (
 			);
-			name = Physics;
+			name = "SwiftUI-Rope";
 			productName = Physics;
-			productReference = F5C33B642874E61A00644115 /* Physics.app */;
+			productReference = F5C33B642874E61A00644115 /* SwiftUI-Rope.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -138,7 +138,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F5C33B5F2874E61A00644115 /* Build configuration list for PBXProject "Physics" */;
+			buildConfigurationList = F5C33B5F2874E61A00644115 /* Build configuration list for PBXProject "SwiftUI-Rope" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -151,7 +151,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F5C33B632874E61A00644115 /* Physics */,
+				F5C33B632874E61A00644115 /* SwiftUI-Rope */,
 			);
 		};
 /* End PBXProject section */
@@ -305,11 +305,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Physics/Physics.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Rope/SwiftUI-Rope.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Physics/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-Rope/Preview Content\"";
 				DEVELOPMENT_TEAM = U6J8328WE2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -320,7 +320,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.Physics;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.SwiftUI-Rope";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -332,11 +332,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Physics/Physics.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "SwiftUI-Rope/SwiftUI-Rope.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Physics/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-Rope/Preview Content\"";
 				DEVELOPMENT_TEAM = U6J8328WE2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -347,7 +347,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.litteral.Physics;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.litteral.SwiftUI-Rope";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,7 +357,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F5C33B5F2874E61A00644115 /* Build configuration list for PBXProject "Physics" */ = {
+		F5C33B5F2874E61A00644115 /* Build configuration list for PBXProject "SwiftUI-Rope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5C33B712874E61C00644115 /* Debug */,
@@ -366,7 +366,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F5C33B732874E61C00644115 /* Build configuration list for PBXNativeTarget "Physics" */ = {
+		F5C33B732874E61C00644115 /* Build configuration list for PBXNativeTarget "SwiftUI-Rope" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F5C33B742874E61C00644115 /* Debug */,
