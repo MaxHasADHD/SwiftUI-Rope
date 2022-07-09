@@ -16,7 +16,7 @@
 		F5C33B7D2874F15600644115 /* RopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B7C2874F15600644115 /* RopeView.swift */; };
 		F5C33B852875157E00644115 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B842875157E00644115 /* Helper.swift */; };
 		F5C33B962875A76000644115 /* Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B952875A76000644115 /* Spring.swift */; };
-		F5C33B982875E7B500644115 /* RopeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33B972875E7B500644115 /* RopeModel.swift */; };
+		F5C33BC42878A00400644115 /* Rope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C33BC32878A00400644115 /* Rope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		F5C33B7C2874F15600644115 /* RopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeView.swift; sourceTree = "<group>"; };
 		F5C33B842875157E00644115 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		F5C33B952875A76000644115 /* Spring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spring.swift; sourceTree = "<group>"; };
-		F5C33B972875E7B500644115 /* RopeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RopeModel.swift; sourceTree = "<group>"; };
+		F5C33BC32878A00400644115 /* Rope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				F5C33B7A2874E81D00644115 /* Plug.swift */,
-				F5C33B972875E7B500644115 /* RopeModel.swift */,
+				F5C33BC32878A00400644115 /* Rope.swift */,
 				F5C33B952875A76000644115 /* Spring.swift */,
 			);
 			path = Models;
@@ -178,8 +178,8 @@
 				F5C33B7B2874E81D00644115 /* Plug.swift in Sources */,
 				F5C33B772874E6A400644115 /* PlugView.swift in Sources */,
 				F5C33B852875157E00644115 /* Helper.swift in Sources */,
+				F5C33BC42878A00400644115 /* Rope.swift in Sources */,
 				F5C33B962875A76000644115 /* Spring.swift in Sources */,
-				F5C33B982875E7B500644115 /* RopeModel.swift in Sources */,
 				F5C33B682874E61A00644115 /* PhysicsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

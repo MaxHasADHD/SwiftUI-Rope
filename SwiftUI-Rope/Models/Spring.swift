@@ -16,19 +16,26 @@ import SwiftUI
 // damping Force = negative damping * velocity
 
 class Spring {
-
-    let gravity: CGFloat = 9.8
     
     private var velocity = CGVector.zero
 
     /// Calculates a point for a given time to simulate a spring
     /// - Parameters:
     ///   - position: Position from control (red dot)
-    ///   - stiffness: K
-    ///   - mass: M
-    ///   - damping: D
+    ///   - anchor: The point that the control is "connected" to.
+    ///   - stiffness: The extent to which an object resists deformation in response to an applied force
+    ///   - mass: The density and type of atoms in any given object
+    ///   - damping: The force that slows down and eventually stops an oscillation by dissipating energy
     /// - Returns: The end point of the spring for a given time.
-    func calculatePosition(position: CGPoint, anchor: CGPoint, timeInterval: TimeInterval = 0.2, stiffness: CGFloat = 10, mass: CGFloat = 8, damping: CGFloat = 3) -> CGPoint {
+    func calculatePosition(
+        position: CGPoint,
+        anchor: CGPoint,
+        timeInterval: TimeInterval = 0.2,
+        gravity: CGFloat = 9.8,
+        stiffness: CGFloat = 10,
+        mass: CGFloat = 8,
+        damping: CGFloat = 5
+    ) -> CGPoint {
         /* Spring stiffness, in kg / s^2 */
         let k: CGFloat = -stiffness
         
@@ -58,33 +65,5 @@ class Spring {
         let positionY = position.y + vy * timeInterval
         
         return CGPoint(x: positionX, y: positionY)
-    }
-}
-
-// Based on https://twitter.com/t3ssel8r/status/1470039981502922752
-struct Rope {
-    // Length of rope, unchanging.
-    let length: CGFloat
-    
-    let a1: CGPoint
-    let a2: CGPoint
-    
-    // Slack in the rope (red dot)
-    var slack: CGFloat {
-        // Distance cannot be > the length of the rope
-        let slack = length - distance(a1, a2)
-        return max(min(length, slack), 0)
-    }
-    
-    // Midpoint
-    var ropeCenter: CGPoint {
-        midpoint(a1, a2)
-    }
-    
-    // Control (grey dot)
-    var control: CGPoint {
-        var control = ropeCenter
-        control.y += slack
-        return control
     }
 }
